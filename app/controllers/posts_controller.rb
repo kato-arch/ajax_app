@@ -5,8 +5,9 @@ class PostsController < ApplicationController
   def create
     post = Post.create(content: params[:content], checked: false)
     render json:{ post: post }
-    # メモ作成時に未読の情報を保存するようにしたこと
-    # レスポンスをJSONに変更したこと
+    # 非同期通信を行う上で、サーバーサイドの実装内容は下記２点が必要
+    # ①メモ作成時に未読の情報を保存する→エンドポイントを作成
+    # ②レスポンスをJSONに変更したこと→レスポンスの設定
   end
   def checked
     post = Post.find(params[:id])
